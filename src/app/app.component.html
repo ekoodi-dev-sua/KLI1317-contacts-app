@@ -1,16 +1,1 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1 [hidden]="true">
-    Welcome to {{ title }}!
-  </h1>
-  <h2>
-    Hello, {{name}}!
-  </h2>
-  <form (submit)="onSubmitGreeting()">
-    <input type="text" [(ngModel)]="name" name="name">
-    <button type="submit">Submit</button>
-  </form>
-  <h2 *ngFor="let greeting of greetings">
-    {{greeting}}
-  </h2>
-</div>
+<app-contact-list></app-contact-list>
