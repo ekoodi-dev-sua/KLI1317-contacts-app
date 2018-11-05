@@ -8,7 +8,7 @@ import { ContactListItemComponent } from './contact/contact-list-item/contact-li
 import {ContactService} from './contact/services/contact.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './ui/toolbar/toolbar/toolbar.component';
-import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/materia
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]
