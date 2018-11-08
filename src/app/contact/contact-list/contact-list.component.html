@@ -1,3 +1,11 @@
-<ul>
-  <app-contact-list-item *ngFor="let contact of contacts" [contact]="contact" (contactSelect)="onContactSelect(contact)"></app-contact-list-item>
-</ul>
+<div class="app-contact-list">
+  <div fxLayout='row' fxLayout.xs="column" fxLayoutGap="10px">
+    <app-contact-list-item *ngFor="let contactItem of contacts | paginate: { itemsPerPage: 4, currentPage: p}"
+                           [contact]="contactItem"
+                           (contactSelect)="onContactSelect(contactItem)">
+    </app-contact-list-item>
+  </div>
+  <div style="margin-bottom: 15%;">
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+  </div>
+</div>

@@ -11,6 +11,7 @@
 
 .app-sidenav-header {
   background: #f5f5f5;
+  background: url(../../src/assets/images/canvas.png) right top;
   padding: 16px;
 }
 
