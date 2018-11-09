@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Contact} from '../contact';
 import {ContactService} from '../services/contact.service';
-import {MediaChange, ObservableMedia} from '@angular/flex-layout';
 
 
 @Component({
@@ -13,20 +12,11 @@ export class ContactListComponent implements OnInit {
 
   contacts: Contact[];
 
-  constructor(private contactService: ContactService, public media: ObservableMedia) {
+  constructor(private contactService: ContactService) {
     this.contacts = [];
-
-    this.media.subscribe((change: MediaChange) => {
-      console.log(change.mqAlias);
-    });
   }
 
   ngOnInit() {
-    /*
-    this.contacts.push(new Contact(1, 'First', 'Contact'));
-    this.contacts.push(new Contact(2, 'Second', 'Contact'));
-    this.contacts.push(new Contact(3, 'Third', 'Contact'));
-    */
     this.contacts = this.contactService.getContacts();
     console.log(this.contacts);
   }

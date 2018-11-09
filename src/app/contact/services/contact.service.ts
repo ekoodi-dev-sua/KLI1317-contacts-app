@@ -29,7 +29,7 @@ export class ContactService {
 
   deleteContact(id: number) {
     console.log('Removing contact id: ' + id + '...' );
-    for (let entry of this.contacts) {
+    for (const entry of this.contacts) {
       if (entry.id === id) {
         this.contacts.splice( this.contacts.indexOf(entry), 1 );
       }

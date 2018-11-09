@@ -1,6 +1,6 @@
 <div class="app-contact-list">
-  <div fxLayout='row' fxLayout.xs="column" fxLayoutGap="10px">
-    <app-contact-list-item *ngFor="let contactItem of contacts | paginate: { itemsPerPage: 4, currentPage: p}"
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <app-contact-list-item *ngFor="let contactItem of contacts | paginate: {itemsPerPage: 4, currentPage: p}"
                            [contact]="contactItem"
                            (contactSelect)="onContactSelect(contactItem)">
     </app-contact-list-item>
