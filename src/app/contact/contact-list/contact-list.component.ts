@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Contact} from '../contact';
 import {ContactService} from '../services/contact.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ContactListComponent implements OnInit {
 
   contacts: Contact[];
 
-  constructor(private contactService: ContactService) {
+  constructor(private contactService: ContactService, private router: Router) {
     this.contacts = [];
   }
 
@@ -23,6 +24,11 @@ export class ContactListComponent implements OnInit {
 
   onContactSelect(contact: Contact) {
     console.log('Contact selected: ' + contact.id);
+  }
+
+  onContactCreate(): void {
+    console.log('ContactListComponent: onContactCreate');
+    this.router.navigate(['/contacts/new']);
   }
 
 }

@@ -1,0 +1,21 @@
+<mat-card>
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <div fxLayout="column">
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.firstName"
+               type="text"
+               required
+               placeholder="First name">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.lastName"
+               type="text"
+               required
+               placeholder="Last name">
+      </mat-form-field>
+    </div>
+  </div>
+</mat-card>
+<button mat-fab (click)="onSave()" class="app-fab">
+  <mat-icon>check</mat-icon>
+</button>
