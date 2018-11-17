@@ -26,6 +26,7 @@ import {RouterModule, Routes} from '@angular/router';
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
   {path: 'contacts/new', component: ContactDetailComponent},
+  {path: 'contacts/edit/:id', component: ContactDetailComponent},
   {path: '', redirectTo: '/contacts', pathMatch: 'full'}
 ];
 

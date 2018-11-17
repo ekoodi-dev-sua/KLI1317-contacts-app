@@ -27,12 +27,36 @@ export class ContactService {
     return this.contacts;
   }
 
+  addContact(contact: Contact) {
+    const lastId = this.contacts[this.contacts.length - 1].id;
+    contact.id = lastId + 1;
+    this.contacts.push(contact);
+  }
+
   deleteContact(id: number) {
-    console.log('Removing contact id: ' + id + '...' );
     for (const entry of this.contacts) {
       if (entry.id === id) {
         this.contacts.splice( this.contacts.indexOf(entry), 1 );
       }
     }
+  }
+
+  editContact(contact: Contact) {
+    this.contacts.forEach((entry, index) => {
+      if (entry.id === contact.id) {
+        this.contacts[index] = contact;
+      }
+    });
+  }
+
+  getContactById(id: string): Contact {
+    let contactCopy: Contact;
+    for (const entry of this.contacts) {
+      if (entry.id === Number(id)) {
+        // copy object, otherwise it modifies the object in an array before saving
+        contactCopy = Object.assign({}, entry);
+      }
+    }
+    return contactCopy;
   }
 }
