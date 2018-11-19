@@ -11,8 +11,8 @@ import { ToolbarComponent } from './ui/toolbar/toolbar/toolbar.component';
 import {
   MatButtonModule,
   MatCardModule,
-  MatDividerModule,
-  MatIconModule,
+  MatDividerModule, MatFormFieldModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatSidenavModule,
   MatToolbarModule
@@ -20,13 +20,24 @@ import {
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AvatarModule} from 'ngx-avatar';
+import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
+import {RouterModule, Routes} from '@angular/router';
+import {ToolbarService} from './ui/toolbar/toolbar.service';
+
+const appRoutes: Routes = [
+  {path: 'contacts', component: ContactListComponent},
+  {path: 'contacts/new', component: ContactDetailComponent},
+  {path: 'contacts/edit/:id', component: ContactDetailComponent},
+  {path: '', redirectTo: '/contacts', pathMatch: 'full'}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
     ContactListItemComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ContactDetailComponent
   ],
   imports: [
     AvatarModule,
@@ -40,9 +51,16 @@ import {AvatarModule} from 'ngx-avatar';
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [ContactService],
+  providers: [
+    ContactService,
+    ToolbarService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
