@@ -22,6 +22,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AvatarModule} from 'ngx-avatar';
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import {RouterModule, Routes} from '@angular/router';
+import {ToolbarService} from './ui/toolbar/toolbar.service';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -56,7 +57,10 @@ const appRoutes: Routes = [
     MatInputModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ContactService],
+  providers: [
+    ContactService,
+    ToolbarService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
