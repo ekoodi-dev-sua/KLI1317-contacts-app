@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Contact} from '../contact';
 import {StorageService} from 'ng-storage-service';
+import {ContactLocalStorageService} from './contact-local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ContactService {
   useLocalStorage = false;
   LOCAL_STORAGE_KEY = 'contactsJson';
 
-  constructor(private localStorageService: StorageService) {
+  constructor(private localStorageService: StorageService, private contactLocalStorage: ContactLocalStorageService) {
     // clear local storage
     // this.localStorageService.remove(this.LOCAL_STORAGE_KEY);
 
@@ -43,7 +44,8 @@ export class ContactService {
   }
 
   getContacts(): Contact[] {
-    return this.contacts;
+    //return this.contacts;
+    return this.contactLocalStorage.getContacts();
   }
 
   addContact(contact: Contact) {

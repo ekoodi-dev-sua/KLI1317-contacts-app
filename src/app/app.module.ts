@@ -23,6 +23,7 @@ import {AvatarModule} from 'ngx-avatar';
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ToolbarService} from './ui/toolbar/toolbar.service';
+import {ContactLocalStorageService} from './contact/services/contact-local-storage.service';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     ContactService,
-    ToolbarService
+    ToolbarService,
+    ContactLocalStorageService
   ],
   bootstrap: [AppComponent]
 })
