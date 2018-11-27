@@ -10,11 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './ui/toolbar/toolbar/toolbar.component';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatDividerModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
   MatListModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -23,6 +23,8 @@ import {AvatarModule} from 'ngx-avatar';
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ToolbarService} from './ui/toolbar/toolbar.service';
+import {ContactLocalStorageService} from './contact/services/contact-local-storage.service';
+import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     ContactListComponent,
     ContactListItemComponent,
     ToolbarComponent,
-    ContactDetailComponent
+    ContactDetailComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     AvatarModule,
@@ -47,10 +50,12 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
     MatIconModule,
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
+    MatSnackBarModule,
     NgxPaginationModule,
     FormsModule,
     MatFormFieldModule,
@@ -59,7 +64,11 @@ const appRoutes: Routes = [
   ],
   providers: [
     ContactService,
-    ToolbarService
+    ToolbarService,
+    ContactLocalStorageService
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -27,6 +27,7 @@ export class ContactListComponent implements OnInit {
 
   onContactSelect(contact: Contact) {
     console.log('Contact selected: ' + contact.id);
+    this.contacts = this.contactService.getContacts();
   }
 
   onContactCreate(): void {
