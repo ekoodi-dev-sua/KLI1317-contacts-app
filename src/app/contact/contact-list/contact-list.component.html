@@ -2,7 +2,7 @@
   <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px">
     <app-contact-list-item *ngFor="let contactItem of contacts | paginate: {itemsPerPage: 4, currentPage: p}"
                            [contact]="contactItem"
-                           (contactSelect)="onContactSelect(contactItem)">
+                           (contactDelete)="onContactDelete($event)">
     </app-contact-list-item>
   </div>
   <div style="margin-bottom: 15%;">

@@ -13,21 +13,17 @@ import {ConfirmDialogComponent} from '../../ui/confirm-dialog/confirm-dialog.com
 export class ContactListItemComponent implements OnInit {
 
   @Input() contact: Contact;
-  @Output() contactSelect: EventEmitter<any>;
+  @Output() contactDelete: EventEmitter<any>;
 
   constructor(private router: Router,
               private contactService: ContactService,
               private snackBar: MatSnackBar,
               private dialog: MatDialog) {
-    this.contactSelect = new EventEmitter();
+    this.contactDelete = new EventEmitter();
   }
 
   ngOnInit() {
     console.log(this.contact);
-  }
-
-  onContactSelect() {
-    this.contactSelect.emit();
   }
 
   deleteItem() {
@@ -35,8 +31,8 @@ export class ContactListItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Removing contact');
-        this.contactService.deleteContact(this.contact.id);
-
+        // this.contactService.deleteContact(this.contact.id);
+        /*
         this.snackBar.open('Contact removed',
           this.contact.firstName + ' ' + this.contact.lastName,
           {
@@ -44,8 +40,8 @@ export class ContactListItemComponent implements OnInit {
             verticalPosition: 'top',
             horizontalPosition: 'center'
           });
-
-        this.contactSelect.emit(null);
+         */
+        this.contactDelete.emit(this.contact);
       } else {
         console.log('Removing cancelled');
       }
