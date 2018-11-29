@@ -3,13 +3,14 @@ import {Contact} from '../contact';
 import {ContactLocalStorageService} from './contact-local-storage.service';
 import {ContactHttpService} from './contact-http.service';
 import {Observable} from 'rxjs';
+import {ContactProvider} from '../interfaces/contact-provider';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
-  constructor(private contactLocalStorage: ContactLocalStorageService, private contactHttpService: ContactHttpService) {
+  constructor(private contactProvider: ContactProvider) {
   }
 
   /*
@@ -18,7 +19,7 @@ export class ContactService {
   }
   */
   getContacts(): Observable<Contact[]> {
-    return this.contactHttpService.get();
+    return this.contactProvider.get();
   }
 
   /*
@@ -27,7 +28,7 @@ export class ContactService {
   }
   */
   addContact(contact: Contact): Observable<Contact> {
-    return this.contactHttpService.post(contact);
+    return this.contactProvider.create(contact);
   }
 
   /*
@@ -36,7 +37,7 @@ export class ContactService {
   }
   */
   deleteContact(contact: Contact): Observable<any> {
-    return this.contactHttpService.delete(contact);
+    return this.contactProvider.delete(contact);
   }
 
   /*
@@ -45,7 +46,7 @@ export class ContactService {
   }
   */
   editContact(contact: Contact): Observable<Contact> {
-    return this.contactHttpService.put(contact);
+    return this.contactProvider.edit(contact);
   }
 
   /*
@@ -54,6 +55,6 @@ export class ContactService {
   }
   */
   getContactById(id: string): Observable<Contact> {
-    return this.contactHttpService.getById(id);
+    return this.contactProvider.getById(id);
   }
 }
