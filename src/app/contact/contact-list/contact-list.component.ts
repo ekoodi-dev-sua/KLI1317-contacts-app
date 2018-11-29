@@ -26,21 +26,9 @@ export class ContactListComponent implements OnInit {
     this.loadContacts();
   }
 
-  onContactDelete(contact: Contact) {
-    console.log('Contact delete: ' + contact.id);
-    // this.contacts = this.contactService.getContacts();
-    this.contactService.deleteContact(contact).subscribe(() => {
-
-      this.snackBar.open('Contact removed',
-        contact.firstName + ' ' + contact.lastName,
-        {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-        });
-
-      this.loadContacts();
-    });
+  onContactDeleted(contact: Contact) {
+    console.log('Contact deleted: ' + contact.id);
+    this.loadContacts();
   }
 
   onContactCreate(): void {

@@ -13,13 +13,13 @@ import {ConfirmDialogComponent} from '../../ui/confirm-dialog/confirm-dialog.com
 export class ContactListItemComponent implements OnInit {
 
   @Input() contact: Contact;
-  @Output() contactDelete: EventEmitter<any>;
+  @Output() contactDeleted: EventEmitter<any>;
 
   constructor(private router: Router,
               private contactService: ContactService,
               private snackBar: MatSnackBar,
               private dialog: MatDialog) {
-    this.contactDelete = new EventEmitter();
+    this.contactDeleted = new EventEmitter();
   }
 
   ngOnInit() {
@@ -31,6 +31,7 @@ export class ContactListItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Removing contact');
+        this.removeContact();
         // this.contactService.deleteContact(this.contact.id);
         /*
         this.snackBar.open('Contact removed',
@@ -41,7 +42,7 @@ export class ContactListItemComponent implements OnInit {
             horizontalPosition: 'center'
           });
          */
-        this.contactDelete.emit(this.contact);
+        // this.contactDeleted.emit(this.contact);
       } else {
         console.log('Removing cancelled');
       }
@@ -50,6 +51,19 @@ export class ContactListItemComponent implements OnInit {
 
   editItem() {
     this.router.navigate(['contacts/edit', this.contact.id]);
+  }
+
+  removeContact() {
+    this.contactService.deleteContact(this.contact).subscribe(() => {
+      this.snackBar.open('Contact removed',
+        this.contact.firstName + ' ' + this.contact.lastName,
+        {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      this.contactDeleted.emit(this.contact);
+    });
   }
 
 }
