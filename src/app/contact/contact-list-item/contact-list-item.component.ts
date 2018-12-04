@@ -66,4 +66,8 @@ export class ContactListItemComponent implements OnInit {
     });
   }
 
+  navigateToMap() {
+    this.router.navigate(['contacts/map', {streetAddress: this.contact.streetAddress, city: this.contact.city}]);
+  }
+
 }

@@ -28,11 +28,14 @@ import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.compo
 import {ContactProvider} from './contact/interfaces/contact-provider';
 import {ContactHttpService} from './contact/services/contact-http.service';
 import {environment} from '../environments/environment';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { ContactMapComponent } from './contact/contact-map/contact-map.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
   {path: 'contacts/new', component: ContactDetailComponent},
   {path: 'contacts/edit/:id', component: ContactDetailComponent},
+  {path: 'contacts/map', component: ContactMapComponent},
   {path: '', redirectTo: '/contacts', pathMatch: 'full'}
 ];
 
@@ -43,7 +46,9 @@ const appRoutes: Routes = [
     ContactListItemComponent,
     ToolbarComponent,
     ContactDetailComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    SafeUrlPipe,
+    ContactMapComponent
   ],
   imports: [
     AvatarModule,
