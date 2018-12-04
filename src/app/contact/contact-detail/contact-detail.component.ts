@@ -29,7 +29,10 @@ export class ContactDetailComponent implements OnInit {
       this.toolbar.setToolbarOptions(new ToolbarOptions('back', 'Edit contact'));
       // Get contact by id
       if (this.contactService.getContactById(contactId) !== undefined) {
-        this.contact = this.contactService.getContactById(contactId);
+        //this.contact = this.contactService.getContactById(contactId);
+        this.contactService.getContactById(contactId).subscribe(result => {
+          this.contact = result;
+        });
       } else {
         // contact not found, route to the list view
         this.router.navigate(['/contacts']);
@@ -45,15 +48,24 @@ export class ContactDetailComponent implements OnInit {
     if (this.contact.id == null) {
       // Create contact
       console.log('ContactDetail: creating contact');
-      this.contactService.addContact(this.contact);
-      msgInfo = 'Contact saved';
-
+      //this.contactService.addContact(this.contact);
+      this.contactService.addContact(this.contact).subscribe(() => {
+        console.log('Contact saved');
+        msgInfo = 'Contact saved';
+        this.onContactSaved(msgInfo);
+      });
     } else {
       console.log('ContactDetail: editing contact');
-      this.contactService.editContact(this.contact);
-      msgInfo = 'Contact edited';
+      //this.contactService.editContact(this.contact);
+      this.contactService.editContact(this.contact).subscribe(() => {
+        console.log('Contact edited');
+        msgInfo = 'Contact edited';
+        this.onContactSaved(msgInfo);
+      });
     }
+  }
 
+  onContactSaved(msgInfo: string): void {
     this.snackBar.open(msgInfo,
       this.contact.firstName + ' ' + this.contact.lastName,
       {
