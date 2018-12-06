@@ -27,7 +27,7 @@
                  name="gsm" #gsm="ngModel"
                  type="tel"
                  required maxlength="18"
-                 placeholder="phone">
+                 placeholder="Phone">
           <mat-error *ngIf="gsm.invalid">
             Please enter a valid number
           </mat-error>
@@ -38,12 +38,42 @@
                  type="email"
                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
                  required
-                 placeholder="email">
+                 placeholder="Email">
           <mat-error *ngIf="email.invalid && email.errors.pattern" class="invalid-feedback">
             Email must be a valid email address
           </mat-error>
           <mat-error *ngIf="email.invalid && email.errors.required" class="invalid-feedback">
             Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field floatPlaceholder="auto">
+          <input matInput [(ngModel)]="contact.streetAddress"
+                 name="streetAddress" #streetAddress="ngModel"
+                 type="text"
+                 required
+                 placeholder="Street address">
+          <mat-error *ngIf="streetAddress.invalid">
+            Please enter a valid street address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field floatPlaceholder="auto">
+          <input matInput [(ngModel)]="contact.postalCode"
+                 name="postalCode" #postalCode="ngModel"
+                 type="text"
+                 required
+                 placeholder="Postal code">
+          <mat-error *ngIf="postalCode.invalid">
+            Please enter a valid postal code
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field floatPlaceholder="auto">
+          <input matInput [(ngModel)]="contact.city"
+                 name="city" #city="ngModel"
+                 type="text"
+                 required
+                 placeholder="City">
+          <mat-error *ngIf="city.invalid">
+            Please enter a valid city
           </mat-error>
         </mat-form-field>
       </div>
